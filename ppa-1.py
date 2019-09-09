@@ -36,8 +36,9 @@ def promt_for_BMI():
         
 
 # This function simply displays the menu for the prompt
-def print_menu():
-    print_heading("WELCOME TO PP1")
+def print_menu(first):
+    if first:
+        print_heading("WELCOME TO PP1")
     print_border()
     print("Please select the option you'd like :")
     print('1. Function One')
@@ -47,7 +48,7 @@ def print_menu():
     print('5. Exit')
     print_border()
     choice = prompt_user("Please select the number of the function you'd like",'[1-5]')
-    ret = "Invalid choice"
+    if choice == "1":
         print(promt_for_BMI())
 
 print_menu(True)
