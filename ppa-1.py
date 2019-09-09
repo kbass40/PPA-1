@@ -11,6 +11,7 @@ import re
 
 import pytest
 from BMI import *
+from Retirement import *
 
 
 def print_heading(s):
@@ -35,14 +36,17 @@ def promt_for_BMI():
     inches = prompt_user("Please enter your height in inches", '^[0-9]+$')
     pounds = prompt_user("Please enter your weight in pounds", '\d*\.\d+|\d+')
     try:
-        bmi = BMI(int(feet), int(inches), float(pounds))
-        return bmi
+        return BMI(int(feet), int(inches), float(pounds))
     except RuntimeError as e:
         print(e)
         return ''
 
 def prompt_for_retirement_age():
-    return None
+    age = prompt_user("Please enter your age", '^[0-9]+$')
+    salary = prompt_user("Please enter your salaray as a number", '^[0-9]+$')
+    saved = prompt_user("Please enter the percantage of your salary that you save", '\d*\.\d+|\d+')
+    goal = prompt_user("Please enter how much money you need to retire as a number", '^[0-9]+$')
+    return Retirement(age, salary, saved, goal)
         
 
 # This function simply displays the menu for the prompt
