@@ -44,5 +44,4 @@ def print_menu():
     print(choice)
 
 
-#print_menu()
-BMI()
+print_menu()
