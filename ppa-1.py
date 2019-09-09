@@ -31,10 +31,15 @@ def prompt_user(phrase="", format=None): #format in this instance is a regex of 
             print('Sorry, your input was not correct. Please try again matching this regex pattern: ',p,'.\n')
 
 def promt_for_BMI():
-    feet = prompt_user("Please enter your height in feet", '^[0-9]+$')
+    feet = prompt_user("Please enter your height in feet", '^[0-8]$')
     inches = prompt_user("Please enter your height in inches", '^[0-9]+$')
     pounds = prompt_user("Please enter your weight in pounds", '\d*\.\d+|\d+')
-    return BMI(int(feet), int(inches), float(pounds))
+    try:
+        bmi = BMI(int(feet), int(inches), float(pounds))
+        return bmi
+    except RuntimeError as e:
+        print(e)
+        return ''
         
 
 # This function simply displays the menu for the prompt
