@@ -17,5 +17,27 @@ def Retirement(age,salary,saved,goal):
     if not isinstance(goal,int):
         raise TypeError('Argument goal must be passed as an integer')
 
-def total_saved_per_year(salary):
-    return salary * 1.35
+    # calculate amount saved per year after employer matching
+    totalSaved = total_saved_per_year(salary, saved)
+    yearsUntilRetirement = years_until_retirement(totalSaved, goal)
+    ageOfRetirement = age_of_retirement(age, yearsUntilRetirement)
+    if ageOfRetirement == -1:
+        return "You will not live to see your retirement"
+    else:
+        return "You will be able to retire at the age of " + str(ageOfRetirement)
+
+def total_saved_per_year(salary, saved):
+    return salary * (saved / 100) * 1.35
+
+def years_until_retirement(totalSaved, goal):
+    years = goal // totalSaved
+    # round up if partial year
+    if goal % totalSaved:
+        years += 1
+    return years
+
+def age_of_retirement(age, yearsUntilRetirement):
+    ageOfRetirement = age + yearsUntilRetirement
+    if ageOfRetirement > 100:
+        ageOfRetirement = -1
+    return int(ageOfRetirement)
