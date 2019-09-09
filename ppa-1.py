@@ -43,10 +43,10 @@ def promt_for_BMI():
 
 def prompt_for_retirement_age():
     age = prompt_user("Please enter your age", '^[0-9]+$')
-    salary = prompt_user("Please enter your salaray as a number", '^[0-9]+$')
+    salary = prompt_user("Please enter your salary as a number", '^[0-9]+$')
     saved = prompt_user("Please enter the percantage of your salary that you save", '\d*\.\d+|\d+')
     goal = prompt_user("Please enter how much money you need to retire as a number", '^[0-9]+$')
-    return Retirement(age, salary, saved, goal)
+    return Retirement(int(age), int(salary), float(saved), int(goal))
         
 
 # This function simply displays the menu for the prompt
