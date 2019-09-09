@@ -7,4 +7,12 @@ assume death at 100 years (therefore, indicate if the savings goal is not met ).
 '''
 
 def Retirement(age,salary,saved,goal):
-    pass
+    # First, verify that the data inputted is of the correct type
+    if not isinstance(age,int):
+        raise TypeError('Argument age must be passed as an integer')
+    if not isinstance(salary,int):
+        raise TypeError('Argument salary must be passed as an integer')
+    if not isinstance(saved,float):
+        raise TypeError('Argument saved percentage must be passed as an float of type ##%')
+    if not isinstance(goal,int):
+        raise TypeError('Argument goal must be passed as an integer')
