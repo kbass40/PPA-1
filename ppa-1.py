@@ -6,10 +6,13 @@ Daniel Tymecki and Kyle Bassignani
 
 '''
 
-import re
 import logging
+import re
+
 import pytest
+
 from BMI import *
+
 
 def print_heading(s):
     print('*'*25,s,'*'*25)
