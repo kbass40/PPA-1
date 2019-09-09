@@ -10,7 +10,6 @@ import logging
 import re
 
 import pytest
-
 from BMI import *
 
 
@@ -44,7 +43,7 @@ def print_menu(first):
         print_heading("WELCOME TO PP1")
     print_border()
     print("Please select the option you'd like :")
-    print('1. Function One')
+    print('1. BMI Function')
     print('2. Function Two')
     print('3. Function Three')
     print('4. Function Four')
@@ -53,7 +52,11 @@ def print_menu(first):
     choice = prompt_user("Please select the number of the function you'd like",'[1-5]')
     if choice == "1":
         print(promt_for_BMI())
+    if choice == "5":
+        return False
 
 print_menu(True)
-while True:
-    print_menu(False)
+loop = True
+
+while loop:
+    loop = print_menu(loop)

@@ -32,9 +32,11 @@ def BMI(feet,inches,pounds):
         raise RuntimeError('Argument pounds cannot be less than or equal to 0!')
 
 
-    # Next, convert to metric
+    # Next, convert to metric and calculate BMI
+    calculatedBMI = calculate_BMI(feet, inches, pounds)
+    return calculatedBMI
+
+def calculate_BMI(feet, inches, pounds):
     metric_weight = pounds * METRIC_CONVERSION_FACTOR_WEIGHT
     metric_height = (feet*12 + inches) * METRIC_CONVERSION_FACTOR_HEIGHT
-
-    result = metric_weight / (metric_height**2)  
-    return result
+    return  round((metric_weight / (metric_height**2)), 1) 
