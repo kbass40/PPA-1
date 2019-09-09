@@ -61,9 +61,9 @@ def test_BMI_pounds_raises_exception_on_bad_float_args():
     with pytest.raises(RuntimeError):
         BMI(5,0,.0)
 
-def test_BMI_returns_float_argument():
+def test_BMI_returns_string_argument():
     result = BMI(5,8,150.0)
-    assert isinstance(result,float), 'Test Failed: BMI function failed to return a valid float result'
+    assert isinstance(result,str), 'Test Failed: BMI function failed to return a valid string result'
 
 def test_calculate_BMI():
     result = calculate_BMI(5,3,125.0)
