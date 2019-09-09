@@ -22,9 +22,23 @@ def BMI(feet,inches,pounds):
 
     # Next, convert to metric and calculate BMI
     calculatedBMI = calculate_BMI(feet, inches, pounds)
-    return calculatedBMI
+    # Classify person based on BMI
+    classifiedBMI = classify_BMI(calculatedBMI)
+    return "Your BMI is: " + str(calculatedBMI) + " and you are " + classifiedBMI
 
 def calculate_BMI(feet, inches, pounds):
     metric_weight = pounds * METRIC_CONVERSION_FACTOR_WEIGHT
     metric_height = (feet*12 + inches) * METRIC_CONVERSION_FACTOR_HEIGHT
     return  round((metric_weight / (metric_height**2)), 1) 
+
+def classify_BMI(calculated_BMI):
+    if calculated_BMI < 18.5:
+        return "Underweight"
+    elif calculated_BMI >= 18.5 and calculated_BMI <= 24.9:
+        return "Normal weight"
+    elif calculated_BMI >= 25 and calculated_BMI <= 29.9:
+        return "Overweight"
+    elif calculated_BMI >= 30:
+        return "Obese"
+    else:
+        return "Error calculating BMI"

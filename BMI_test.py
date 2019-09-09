@@ -47,3 +47,19 @@ def test_BMI_returns_float_argument():
 def test_calculate_BMI():
     result = calculate_BMI(5,3,125.0)
     assert round(result,1) == 22.7, 'Test Failed: Incorrect BMI calculated'
+
+def test_classify_BMI1():
+    result = classify_BMI(15)
+    assert result == "Underweight"
+
+def test_classify_BMI2():
+    result = classify_BMI(18.5)
+    assert result == "Normal weight"
+
+def test_classify_BMI3():
+    result = classify_BMI(29.9)
+    assert result == "Overweight"
+
+def test_classify_BMI4():
+    result = classify_BMI(30)
+    assert result == "Obese"
