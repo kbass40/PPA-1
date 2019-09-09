@@ -1,0 +1,1 @@
+py.test ppa-1.py%
