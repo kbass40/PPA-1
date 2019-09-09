@@ -8,3 +8,6 @@ assume death at 100 years (therefore, indicate if the savings goal is not met ).
 
 def Retirement(age,salary,saved,goal):
     pass
+
+def total_saved_per_year(salary):
+    return salary * 1.35
