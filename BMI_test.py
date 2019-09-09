@@ -44,6 +44,6 @@ def test_BMI_returns_float_argument():
     result = BMI(5,8,150.0)
     assert isinstance(result,float), 'Test Failed: BMI function failed to return a valid float result'
 
-def test_BMI_results():
-    result = BMI(5,3,125.0)
+def test_calculate_BMI():
+    result = calculate_BMI(5,3,125.0)
     assert round(result,1) == 22.7, 'Test Failed: Incorrect BMI calculated'
