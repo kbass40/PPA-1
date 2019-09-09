@@ -27,6 +27,12 @@ def prompt_user(phrase="", format=None): #format in this instance is a regex of 
             return temp
         else:
             print('Sorry, your input was not correct. Please try again matching this regex pattern: ',p,'.\n')
+
+def promt_for_BMI():
+    feet = prompt_user("Please enter your height in feet", '^[0-9]+$')
+    inches = prompt_user("Please enter your height in inches", '^[0-9]+$')
+    pounds = prompt_user("Please enter your weight in pounds", '\d*\.\d+|\d+')
+    return BMI(feet, inches, pounds)
         
 
 # This function simply displays the menu for the prompt
@@ -41,7 +47,9 @@ def print_menu():
     print('5. Exit')
     print_border()
     choice = prompt_user("Please select the number of the function you'd like",'[1-5]')
-    print(choice)
+    ret = "Invalid choice"
+        print(promt_for_BMI())
 
-
-print_menu()
+print_menu(True)
+while True:
+    print_menu(False)
