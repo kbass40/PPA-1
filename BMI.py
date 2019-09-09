@@ -7,5 +7,4 @@ of 30 or greater (need to convert height and weight to metric values - see formu
 '''
 
 def BMI(feet,inches,pounds):
-    print("This is my BMI function")
-    return feet
+    return "This is the BMI function"
