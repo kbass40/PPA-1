@@ -6,11 +6,12 @@ Daniel Tymecki and Kyle Bassignani
 
 '''
 
-import re
 import logging
+import re
+
 import pytest
-import sys
 from BMI import *
+
 
 def print_heading(s):
     print('*'*25,s,'*'*25)
@@ -52,8 +53,10 @@ def print_menu(first):
     if choice == "1":
         print(promt_for_BMI())
     if choice == "5":
-        sys.exit(0)
+        return False
 
 print_menu(True)
-while True:
-    print_menu(False)
+loop = True
+
+while loop:
+    loop = print_menu(loop)

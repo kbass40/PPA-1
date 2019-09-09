@@ -19,6 +19,18 @@ def BMI(feet,inches,pounds):
 
     if not isinstance(pounds,float):
         raise TypeError('Argument pounds must be passed as an float')
+    
+    # Next we test if the data makes sense given the domain
+    # 0 feet is allowed but nothing past 8 feet cause that matches the highest person who's ever lived
+    if feet < 0 or feet > 8:
+        raise RuntimeError('Argument feet cannot be less than 0 or greater than 8!')
+
+    if inches < 0 or inches > 11:
+        raise RuntimeError('Argument inches cannot be less than 0 or greater than 11!')
+
+    if pounds <= 0 :
+        raise RuntimeError('Argument pounds cannot be less than or equal to 0!')
+
 
     # Next, convert to metric and calculate BMI
     calculatedBMI = calculate_BMI(feet, inches, pounds)
