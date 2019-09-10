@@ -1,63 +1,63 @@
 from BMI import *
 import pytest
 
-def test_BMI_feet_raises_exception_on_non_int_args():
+def test_BMI_feet_raises_exception_on_non_int_args_for_str():
     with pytest.raises(TypeError):
         BMI("feet",11,15.2)
     
+def test_BMI_feet_raises_exception_on_non_int_args_for_float():
     with pytest.raises(TypeError):
         BMI(122.2,11,15.2)
 
-    with pytest.raises(TypeError):
-        BMI('5',1,15.2)
-
+def test_BMI_feet_raises_exception_on_non_int_args_for_None():
     with pytest.raises(TypeError):
         BMI(None,1,15.2)
 
-def test_BMI_feet_raises_exception_on_bad_int_args():
+def test_BMI_feet_raises_exception_on_negative_int_args():
     with pytest.raises(RuntimeError):
         BMI(-1,11,15.2)
-    
+
+def test_BMI_feet_raises_exception_on_improbable_int_args():
     with pytest.raises(RuntimeError):
         BMI(50,11,15.2)
 
-def test_BMI_inches_raises_exception_on_non_int_args():
+def test_BMI_inches_raises_exception_on_non_int_args_for_str():
     with pytest.raises(TypeError):
         BMI(5,"inches",15.2)
-    
+
+def test_BMI_inches_raises_exception_on_non_int_args_for_float():
     with pytest.raises(TypeError):
         BMI(5,15.4,15.2)
 
-    with pytest.raises(TypeError):
-        BMI(5,'9',15.2)
-
+def test_BMI_inches_raises_exception_on_non_int_args_for_None():
     with pytest.raises(TypeError):
         BMI(5,None,15.2)
 
-def test_BMI_inches_raises_exception_on_bad_int_args():
+def test_BMI_inches_raises_exception_on_incorrect_int_args():
     with pytest.raises(RuntimeError):
         BMI(5,12,15.2)
-    
+
+def test_BMI_inches_raises_exception_on_negative_int_args():
     with pytest.raises(RuntimeError):
         BMI(5,-1,15.2)
 
-def test_BMI_pounds_raises_exception_on_non_float_args():
+def test_BMI_pounds_raises_exception_on_non_float_args_for_str():
     with pytest.raises(TypeError):
         BMI(5,9,'Pounds')
     
+def test_BMI_pounds_raises_exception_on_non_float_args_for_int():
     with pytest.raises(TypeError):
         BMI(5,9,int(150))
 
-    with pytest.raises(TypeError):
-        BMI(5,9,'5')
-
+def test_BMI_pounds_raises_exception_on_non_float_args_for_None():
     with pytest.raises(TypeError):
         BMI(5,9,None)
 
-def test_BMI_pounds_raises_exception_on_bad_float_args():
+def test_BMI_pounds_raises_exception_on_negative_float_args():
     with pytest.raises(RuntimeError):
         BMI(5,10,-1.0)
-    
+
+def test_BMI_pounds_raises_exception_on_incorrect_float_args():
     with pytest.raises(RuntimeError):
         BMI(5,0,.0)
 

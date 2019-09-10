@@ -1,27 +1,40 @@
 from SplitTip import *
 import pytest
 
-def test_SplitTip_totalAmount_raises_exception_on_non_float_args():
+def test_SplitTip_totalAmount_raises_exception_on_non_float_args_for_str():
     with pytest.raises(TypeError):
         SplitTip("total amount",5)
+
+def test_SplitTip_totalAmount_raises_exception_on_non_float_args_for_int():
+    with pytest.raises(TypeError):
         SplitTip(5,5)
-        SplitTip('5',5)
+
+def test_SplitTip_totalAmount_raises_exception_on_non_float_args_for_None():
+    with pytest.raises(TypeError):
         SplitTip(None,5)
 
-def test_SplitTip_numberOfGuest_raises_exception_on_non_float_args():
+def test_SplitTip_numberOfGuest_raises_exception_on_non_int_args_for_str():
     with pytest.raises(TypeError):
         SplitTip(5.5,"total amount")
+
+def test_SplitTip_numberOfGuest_raises_exception_on_non_int_args_for_float():
+    with pytest.raises(TypeError):
         SplitTip(5.5,5.5)
-        SplitTip(5.5,'5')
+
+def test_SplitTip_numberOfGuest_raises_exception_on_non_int_args_for_None():
+    with pytest.raises(TypeError):
         SplitTip(5.5,None)
 
-def test_SplitTip_totalAmount_raises_exception_on_bad_int_args():
+def test_SplitTip_totalAmount_raises_exception_on_negative_int_args():
     with pytest.raises(RuntimeError):
         SplitTip(-45.50,5)
 
-def test_SplitTip_numberOfGuest_raises_exception_on_bad_int_args():
+def test_SplitTip_numberOfGuest_raises_exception_on_negative_int_args():
     with pytest.raises(RuntimeError):
         SplitTip(45.50,-5)
+
+def test_SplitTip_numberOfGuest_raises_exception_on_zero_int_args():
+    with pytest.raises(RuntimeError):
         SplitTip(45.50,0)
 
 def test_calculate_total_with_tip():
