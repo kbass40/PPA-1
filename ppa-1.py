@@ -12,6 +12,7 @@ import re
 import pytest
 from BMI import *
 from Retirement import *
+from SplitTip import *
 
 
 def print_heading(s):
@@ -20,7 +21,7 @@ def print_heading(s):
 def print_border():
     print('='*66)
 
-def prompt_user(phrase="", format=None): #format in this instance is a regex of what to expect
+def prompt_user(phrase="", format=None): # format in this instance is a regex of what to expect
     wrong = True
     while wrong:
         print(phrase)
@@ -46,7 +47,20 @@ def prompt_for_retirement_age():
     salary = prompt_user("Please enter your salary as a number", '^[0-9]+$')
     saved = prompt_user("Please enter the percantage of your salary that you save", '\d*\.\d+|\d+')
     goal = prompt_user("Please enter how much money you need to retire as a number", '^[0-9]+$')
-    return Retirement(int(age), int(salary), float(saved), int(goal))
+    try:
+        return Retirement(int(age), int(salary), float(saved), int(goal))
+    except RuntimeError as e:
+        print(e)
+        return ''
+
+def prompt_for_split_tip():
+    totalAmount = prompt_user("Please enter the total amount of the meal", '\d*\.\d+|\d+')
+    numberOfGuests = prompt_user("Please enter the total number of guests", '^[0-9]+$')
+    try:
+        return SplitTip(round(float(totalAmount), 2), int(numberOfGuests))
+    except RuntimeError as e:
+        print(e)
+        return ''
         
 
 # This function simply displays the menu for the prompt
@@ -58,14 +72,19 @@ def print_menu(first):
     print('1. BMI Function')
     print('2. Retirement Age')
     print('3. Function Three')
-    print('4. Function Four')
+    print('4. Split the Tip')
     print('5. Exit')
     print_border()
-    choice = prompt_user("Please select the number of the function you'd like",'[1-5]')
+    choice = prompt_user("Please select the number of the function you'd like",'^\d$')
     if choice == "1":
         print(promt_for_BMI())
+        return True
     if choice == "2":
         print(prompt_for_retirement_age())
+        return True
+    if choice == "4":
+        print(prompt_for_split_tip())
+        return True
     if choice == "5":
         return False
 
@@ -73,4 +92,4 @@ print_menu(True)
 loop = True
 
 while loop:
-    loop = print_menu(loop)
+    loop = print_menu(False)
