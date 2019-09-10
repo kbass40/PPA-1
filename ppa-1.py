@@ -6,7 +6,6 @@ Daniel Tymecki and Kyle Bassignani
 
 '''
 
-import logging
 import re
 
 import pytest

@@ -69,6 +69,10 @@ def test_Retirement_saved_raises_exception_on_over_100_perecent_float_args():
     with pytest.raises(RuntimeError):
         Retirement(32,45000,101.5,50000)
 
+def test_Retirement_saved_raises_exception_on_equal_0_perecent_float_args():
+    with pytest.raises(RuntimeError):
+        Retirement(32,45000,0.0,50000)
+
 def test_Retirement_goal_raises_exception_on_non_int_args_for_str():
     with pytest.raises(TypeError):
         Retirement(32,45000,5.0,'goal')
@@ -84,7 +88,7 @@ def test_Retirement_goal_raises_exception_on_non_int_args_for_None():
 def test_Retirement_goal_raises_exception_on_negative_int_args():
     with pytest.raises(RuntimeError):
         Retirement(32,45000,5.0,-5)
-        
+
 def test_Retirement_returns_string_argument():
     assert isinstance(Retirement(32,45000,5.0,500000),str),'Test Failed: Function must return a string'
         

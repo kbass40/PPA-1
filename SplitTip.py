@@ -10,7 +10,7 @@ Whatever logic is used for uneven amounts should be deterministic and testable (
 def SplitTip(totalAmount, numberOfGuest):
     # First, verify that the data inputted is of the correct type
     if not isinstance(totalAmount,float):
-        raise TypeError('Argument total amount must be passed as an integer')
+        raise TypeError('Argument total amount must be passed as an float')
     if not isinstance(numberOfGuest,int):
         raise TypeError('Argument number of guests must be passed as an integer')
 

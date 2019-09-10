@@ -26,7 +26,7 @@ def Retirement(age,salary,saved,goal):
     if salary <= 0:
         raise RuntimeError('Argument salary must be greater than 0')
     # Saved percentage must be bewteen [0,100]
-    if saved < 0.0 or saved > 100.00:
+    if saved <= 0.0 or saved > 100.00:
         raise RuntimeError('Argument age must be between [0,100]')
     # Your goal must be non-negative
     if goal < 0:
