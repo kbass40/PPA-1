@@ -10,7 +10,9 @@ import logging
 import re
 
 import pytest
+
 from BMI import *
+from EmailVerifier import *
 from Retirement import *
 from SplitTip import *
 
@@ -61,7 +63,10 @@ def prompt_for_split_tip():
     except RuntimeError as e:
         print(e)
         return ''
-        
+
+def prompt_for_email_verifier():
+    email = prompt_user("Please enter the email you'd like to check",'.*')
+    return EmailVerifier(str(email))
 
 # This function simply displays the menu for the prompt
 def print_menu(first):
@@ -71,7 +76,7 @@ def print_menu(first):
     print("Please select the option you'd like :")
     print('1. BMI Function')
     print('2. Retirement Age')
-    print('3. Function Three')
+    print('3. Email Verifier')
     print('4. Split the Tip')
     print('5. Exit')
     print_border()
@@ -81,6 +86,9 @@ def print_menu(first):
         return True
     if choice == "2":
         print(prompt_for_retirement_age())
+        return True
+    if choice == "3":
+        print(prompt_for_email_verifier())
         return True
     if choice == "4":
         print(prompt_for_split_tip())
