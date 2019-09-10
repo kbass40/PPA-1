@@ -80,7 +80,7 @@ def print_menu(first):
     print('4. Split the Tip')
     print('5. Exit')
     print_border()
-    choice = prompt_user("Please select the number of the function you'd like",'^\d$')
+    choice = prompt_user("Please select the number of the function you'd like",'^[1-5]$')
     if choice == "1":
         print(promt_for_BMI())
         return True
@@ -96,8 +96,7 @@ def print_menu(first):
     if choice == "5":
         return False
 
-print_menu(True)
-loop = True
+loop = print_menu(True)
 
 while loop:
     loop = print_menu(False)
