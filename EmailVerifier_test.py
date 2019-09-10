@@ -33,3 +33,15 @@ def test_EmailVerifier_works_different_domains():
 
 def test_EmailVerifier_fails_with_invalid_symbols():
     assert 'Email is not valid' == EmailVerifier('Forrest()!@ufl.uwu'), 'Test Failed: Email should not be valid'
+
+def test_EmailVerifier_fails_with_invalid_symbols_in_domain():
+    assert 'Email is not valid' == EmailVerifier('ForrestGUMP@uf!l.uwu'), 'Test Failed: Email should not be valid'
+
+def test_EmailVerifier_works_with_basic_email():
+    assert 'Email is valid' == EmailVerifier('greenphantom@ufl.edu'), 'Test Failed: Email should be valid'
+
+def test_EmailVerifier_works_with_short_email():
+    assert 'Email is valid' == EmailVerifier('tt@ufl.co'), 'Test Failed: Email should be valid'
+
+def test_EmailVerifier_works_with_long_email():
+    assert 'Email is valid' == EmailVerifier('PopeyesBestChickenSandwichInTown!123456789@enterprise.comp'), 'Test Failed: Email should be valid'
