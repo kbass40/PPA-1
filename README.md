@@ -1,7 +1,7 @@
 # PPA-1
  Intro to Unit Testing & T/BDD using Python3 and pytest
 
- For the full project breakdown, see the wiki. https://github.com/kbass40/PPA-1/wiki/PPA-1-Wiki
+ For the full project breakdown, see the wiki. https://github.com/kbass40/PPA-1/wiki
 
 # Windows Installation for Windows 10
 1. First, make sure to install Python3 on your Windows machine via the Windows download
