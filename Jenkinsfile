@@ -1,15 +1,7 @@
-pipeline {
-    agent none 
-    stages {
-        stage('Build') { 
-            agent {
-                docker {
-                    image 'python:3-alpine' 
-                }
-            }
-            steps {
-                sh 'python ppa-1.py' 
-            }
-        }
-    }
-}
+FROM python:3
+
+ADD ppa-1.py /
+
+RUN pip install pytest
+
+CMD [ "python", "./ppa-1.py" ]
