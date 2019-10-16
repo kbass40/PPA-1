@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile Retirement.py'
+                sh 'python -m py_compile Retirement_test.py'
             }
         }
         stage('Test') { 
@@ -18,12 +18,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'py.test --verbose --junit-xml test-reports/results.xml Retirement.py' 
-            }
-            post {
-                always {
-                    junit 'test-reports/results.xml' 
-                }
+                sh 'py.test --verbose --junit-xml test-reports/results.xml Retirement_test.py' 
             }
         }
     }
