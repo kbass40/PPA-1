@@ -1,6 +1,9 @@
 # This module runs EmailVerifier 
 import re
 
+from database import *
+import datetime 
+
 '''
 Email Verifier - Input a string, determine if it is a valid email address (i.e., some_string ‘@’ domain)
 according to these stated requirements with required caveats. some_string1 can consist of text,
@@ -17,8 +20,21 @@ def EmailVerifier(email):
 
     # Next we test if the data makes sense given the domain
     match = re.match('^[A-Z_a-z!$%*+\-=?^_{|}~ ][A-Z_a-z0-9!$%*+\-=?^_{|}~]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
+    
+    ret = ""
+    out = ""
 
     if match == None: 
-        return 'Email is not valid' 
+        ret = 'Email is not valid' 
+        out = 'FALSE'
     else: 
-        return 'Email is valid'
+        ret = 'Email is valid'
+        out = 'TRUE'
+
+    print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+
+    # Log function use in database
+    db = DBConnection()
+    db.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),email, out)
+
+    return ret
