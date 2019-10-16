@@ -18,7 +18,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'py.test --verbose --junit-xml test-reports/results.xml Retirement_test.py' 
+                sh 'python3 -m pytest' 
             }
         }
     }
