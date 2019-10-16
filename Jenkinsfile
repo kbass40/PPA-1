@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile Retirement_test.py'
+                echo 'Inital build'
             }
         }
         stage('Test') { 
