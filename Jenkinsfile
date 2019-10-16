@@ -8,7 +8,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'python3 -m pytest' 
+                sh 'pip install -U pytest'
+                sh 'python3 -m pytest'
             }
         }
     }
