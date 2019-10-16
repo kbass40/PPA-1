@@ -13,10 +13,7 @@ pipeline {
         }
         stage('Test') { 
             agent {
-                docker {
-                    image 'qnib/pytest'
-                    image 'python:latest'
-                }
+                dockerfile true
             }
             steps {
                 sh 'python3 -m pytest' 
