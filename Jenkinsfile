@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python3 ppa-1.py' 
+                sh 'python3 -m pytest' 
             }
         }
     }
