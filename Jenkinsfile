@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python -m py_compile Retirement..py'
+                sh 'python -m py_compile Retirement.py'
             }
         }
         stage('Test') { 
