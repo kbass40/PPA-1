@@ -19,7 +19,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'python3 -m pytest' 
+                sh 'py.test Retirement_test.py' 
             }
         }
     }
