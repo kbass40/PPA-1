@@ -8,7 +8,7 @@ Daniel Tymecki and Kyle Bassignani
 
 import re
 
-import pytest
+# import pytest
 
 from BMI import *
 from EmailVerifier import *
