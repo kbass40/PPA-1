@@ -5,21 +5,22 @@ import mysql.connector
 
 class DBConnection():
 
-    def __init__(self,user,passwd):
+    def __init__(self,user='user',passwd='password'):
         self.conn = None
         self.get_connection(user,passwd)
         self.__initialize__()
 
-    def get_connection(self,user,passwd,new=False):
+    def get_connection(self,user='user',passwd='password',new=False):
         """Creates return new Singleton database connection"""
         if new or not self.conn:
             self.conn = self.__create_connection__(user,passwd)
         return self.conn
 
+    # Function to initialize the table schemas
     def __initialize__(self):
-        curr = conn.cursor()
-        curr.execute("CREATE DATABASE Split_Tip")
-        curr.execute("CREATE DATABASE BMI")
+        curr = self.conn.cursor()
+        curr.execute("CREATE TABLE IF NOT EXISTS db.EmailVerifier(time TIMESTAMP, emailInput VARCHAR(255), output VARCHAR(5), PRIMARY KEY (time, emailInput));")
+        curr.execute("CREATE TABLE IF NOT EXISTS db.BMI(time TIMESTAMP, feet INT, inches INT, pounds FLOAT, output VARCHAR(100), PRIMARY KEY (time, feet, inches, pounds));")
 
 
     # Function to establish a database connection
@@ -29,6 +30,7 @@ class DBConnection():
                 host="localhost",
                 user=user,
                 passwd=passwd,
+                db="db"
             )
             return self.conn
         except Error as e:
@@ -36,16 +38,23 @@ class DBConnection():
 
         return None
 
-    # # Returns a Class object based on the specified name from the database
-    # def select_class_by_name(self,name):
-    #     cur = self.conn.cursor()
-    #     cur.execute("SELECT * FROM CLASSES where Name = '"+name+"';")
+    def print_db(self):
+        curr = self.conn.cursor(buffered=True)
+        curr.execute("SHOW TABLES")
 
-    #     results = []
-    #     rows = cur.fetchall()
-    #     logging.debug(rows[0])
-    #     for i,row in enumerate(rows):
-    #         growthRates = [(rows[i][4],rows[i][5],rows[i][6]),(rows[i][7],rows[i][8],rows[i][9]),(rows[i][10],rows[i][11],rows[i][12]),(rows[i][13],rows[i][14],rows[i][15]),(rows[i][16],rows[i][17],rows[i][18]),(rows[i][19],rows[i][20],rows[i][21])]
-    #         unitClass = UNIT_CLASS.UnitClass(name=rows[i][0],desc=rows[i][1],maxLevel=rows[i][2],movement=rows[i][3],growthRates=growthRates)
+        tables = []
+        for tup in curr:
+            tables.append(tup)
 
-    #     return unitClass
+        for x in tables:
+            print("For Table: "+str(x[0]))
+            query = "SELECT * FROM "+str(x[0])+";"
+            curr.execute(query)
+            for data in curr:
+                print(data)
+
+    def insert_into_Email_Verifier(self, timestamp, email, output):
+        curr = self.conn.cursor()
+        curr.execute("INSERT INTO EmailVerifier (time, emailInput, output) VALUES (%s, %s, %s)", (timestamp, email, output))
+        self.conn.commit()
+        print("Executed successfully")
