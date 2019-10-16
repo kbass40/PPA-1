@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'sudo pip install -U pytest'
+                sh 'pip install -U pytest'
                 sh 'python3 -m pytest'
             }
         }
