@@ -14,7 +14,7 @@ pipeline {
         stage('Test') { 
             agent {
                 docker {
-                    image 'python3:latest'
+                    image 'python:latest'
                     image 'qnib/pytest' 
                 }
             }
