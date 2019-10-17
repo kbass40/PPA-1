@@ -1,5 +1,9 @@
 # This module runs the BMI function
 
+import datetime
+
+from database import *
+
 '''
 Body Mass Index - Input height in feet and inches. Input weight in pounds. Return BMI value and
 category: Underweight = <18.5; Normal weight ! = 18.5–24.9; Overweight = 25–29.9; Obese = BMI
@@ -36,6 +40,11 @@ def BMI(feet,inches,pounds):
     calculatedBMI = calculate_BMI(feet, inches, pounds)
     # Classify person based on BMI
     classifiedBMI = classify_BMI(calculatedBMI)
+
+    # Log data into the database
+    db = DBConnection()
+    db.insert_into_BMI(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), feet, inches, pounds, classifiedBMI)
+
     return "Your BMI is: " + str(calculatedBMI) + " and you are " + classifiedBMI
 
 def calculate_BMI(feet, inches, pounds):

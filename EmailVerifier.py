@@ -31,8 +31,6 @@ def EmailVerifier(email):
         ret = 'Email is valid'
         out = 'TRUE'
 
-    print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
     # Log function use in database
     db = DBConnection()
     db.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),email, out)

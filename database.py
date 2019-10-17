@@ -58,3 +58,9 @@ class DBConnection():
         curr.execute("INSERT INTO EmailVerifier (time, emailInput, output) VALUES (%s, %s, %s)", (timestamp, email, output))
         self.conn.commit()
         print("Executed successfully")
+
+    def insert_into_BMI(self, timestamp, feet, inches, pounds, output):
+        curr = self.conn.cursor()
+        curr.execute("INSERT INTO BMI (time, feet, inches, pounds, output) VALUES (%s, %s, %s, %s, %s)", (timestamp, feet, inches, pounds, output))
+        self.conn.commit()
+        print("Executed successfully")
