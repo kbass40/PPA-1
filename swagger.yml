@@ -45,14 +45,52 @@ paths:
         - name: feet
           in : query
           type: integer
+          description: "The feet of the individual you'd like to calculate."
           required: true
         - name: inches
           in : query
           type: integer
+          description: "The inches of the individual you'd like to calculate (as int)."
           required: true
         - name: pounds
           in : query
           type: number
+          description: "The weight of the individual you'd like to calculate (as float)."
+          required: true
+      responses:
+        201:
+          description: "Posted"
+
+  /email:
+    get:
+      operationId: "database.readEmailVerifier"
+      tags:
+        - "EmailVerifier"
+      summary: "The email verification record supported by the server application"
+      description: "Retrieves the data stored for email verifier function calls"
+      responses:
+        200:
+          description: "Successful read email verifier operation"
+          schema:
+            type: "array"
+            items:
+              properties:
+                timestamp:
+                  type: "string"
+                input:
+                  type: "string"
+                valid:
+                  type: "string"
+    post:
+      operationId: "EmailVerifier.postEmailVerification"
+      tags:
+        - "EmailVerifier"
+      description: "Tries to call Email Verifier function given the inputs"
+      parameters:
+        - name: email
+          in : query
+          type: string
+          description: "The email you'd like to verify."
           required: true
       responses:
         201:

@@ -87,3 +87,22 @@ def readBMI():
 
         return json
 
+def readEmailVerifier():
+    db = DBConnection()
+    conn =  db.get_connection()
+
+    curr = conn.cursor()
+    curr.execute("SELECT * FROM EmailVerifier")
+
+    json = {}
+
+    for i,tup in enumerate(curr):
+        call = {
+            "Timestamp" : str(tup[0]),
+            "Input Email" : str(tup[1]),
+            "Valid" : str(tup[2]),
+        }
+        json[i+1] = call
+
+    return json 
+

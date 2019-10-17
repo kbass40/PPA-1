@@ -2,6 +2,7 @@
 import re
 
 from database import *
+from flask import abort
 import datetime 
 
 '''
@@ -36,3 +37,10 @@ def EmailVerifier(email):
     db.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),email, out)
 
     return ret
+
+def postEmailVerification(email):
+    try:
+        EmailVerifier(email)
+        return 201
+    except:
+        abort(404, "Parameters were not correct")
