@@ -65,7 +65,7 @@ def prompt_for_split_tip():
 
 def prompt_for_email_verifier():
     email = prompt_user("Please enter the email you'd like to check",'.*')
-    return EmailVerifier(str(email))
+    return Verify(str(email))
 
 # This function simply displays the menu for the prompt
 def print_menu(first):
