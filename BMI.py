@@ -1,7 +1,7 @@
 # This module runs the BMI function
 
 import datetime
-
+from flask import make_response, abort
 from database import *
 
 '''
@@ -63,3 +63,9 @@ def classify_BMI(calculated_BMI):
         return "Obese"
     else:
         return "Error calculating BMI"
+
+def postBMI(feet, inches, pounds):
+    try:
+        BMI(feet,inches,pounds)
+    except:
+        abort(404, "Parameters were not correct")

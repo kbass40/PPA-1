@@ -36,3 +36,24 @@ paths:
                   type: "string"
                 classification:
                   type: "string"
+    post:
+      operationId: "BMI.postBMI"
+      tags:
+        - "BMI"
+      description: "Tries to call bmi function given the inputs"
+      parameters:
+        - name: feet
+          in : query
+          type: integer
+          required: true
+        - name: inches
+          in : query
+          type: integer
+          required: true
+        - name: pounds
+          in : query
+          type: number
+          required: true
+      responses:
+        201:
+          description: "Posted"
