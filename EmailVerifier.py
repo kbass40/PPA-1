@@ -13,6 +13,22 @@ printable characters: !$%*+-=?^_{|}~ but not: "(),:;<>@[\]` (this function provi
 to use regular expressions).
 '''
 
+def Verify(email):
+    ret = EmailVerifier(email)
+
+    out = ""
+
+    if ret == "Email is valid":
+        out = "TRUE"
+    else:
+        out = "FALSE"
+
+    # Log function use in database
+    db = DBConnection()
+    insert_into_database(db, email, out)
+
+    return ret
+
 def EmailVerifier(email):
     # First, verify that the data inputted is of the correct type
     if not isinstance(email,str):
@@ -22,17 +38,13 @@ def EmailVerifier(email):
     match = re.match('^[A-Z_a-z!$%*+\-=?^_{|}~ ][A-Z_a-z0-9!$%*+\-=?^_{|}~]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$', email)
     
     ret = ""
-    out = ""
 
     if match == None: 
         ret = 'Email is not valid' 
-        out = 'FALSE'
     else: 
         ret = 'Email is valid'
-        out = 'TRUE'
-
-    # Log function use in database
-    db = DBConnection()
-    db.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),email, out)
 
     return ret
+
+def insert_into_database(db, inpt, output):
+    db.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),inpt, output)
