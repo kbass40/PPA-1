@@ -64,3 +64,25 @@ class DBConnection():
         curr.execute("INSERT INTO BMI (time, feet, inches, pounds, output) VALUES (%s, %s, %s, %s, %s)", (timestamp, feet, inches, pounds, output))
         self.conn.commit()
         print("Executed successfully")
+
+
+def readBMI():
+        db = DBConnection()
+        conn =  db.get_connection()
+
+        curr = conn.cursor()
+        curr.execute("SELECT * FROM BMI")
+
+        json = {}
+
+        for i,tup in enumerate(curr):
+            call = {
+                "Timestamp" : str(tup[0]),
+                "Feet" : str(tup[1]),
+                "Inches" : str(tup[2]),
+                "Pounds" : str(tup[3]),
+                "Classification" : str(tup[4])
+            }
+            json[i+1] = call
+
+        return json
