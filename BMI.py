@@ -13,6 +13,17 @@ of 30 or greater (need to convert height and weight to metric values - see formu
 METRIC_CONVERSION_FACTOR_WEIGHT = .45
 METRIC_CONVERSION_FACTOR_HEIGHT = .025
 
+def DoBMI(feet, inches, pounds):
+    ret = BMI(feet, inches, pounds)
+
+    bmi = calculate_BMI(feet, inches, pounds)
+
+    # Log data into the database
+    db = DBConnection()
+    insert_into_database(db, feet, inches, pounds, bmi)
+
+    return ret
+
 def BMI(feet,inches,pounds):
     # First, verify that the data inputted is of the correct type
     if not isinstance(feet,int):
@@ -41,10 +52,6 @@ def BMI(feet,inches,pounds):
     # Classify person based on BMI
     classifiedBMI = classify_BMI(calculatedBMI)
 
-    # Log data into the database
-    db = DBConnection()
-    db.insert_into_BMI(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), feet, inches, pounds, classifiedBMI)
-
     return "Your BMI is: " + str(calculatedBMI) + " and you are " + classifiedBMI
 
 def calculate_BMI(feet, inches, pounds):
@@ -63,3 +70,6 @@ def classify_BMI(calculated_BMI):
         return "Obese"
     else:
         return "Error calculating BMI"
+
+def insert_into_database(db, feet, inches, pounds, output):
+    db.insert_into_BMI(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),feet, inches, pounds, output)

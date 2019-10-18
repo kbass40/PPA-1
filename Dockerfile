@@ -10,6 +10,8 @@ RUN pip3 install -U pytest
 
 RUN pip3 install mysql-connector-python
 
+RUN pip3 install pytest_mock
+
 RUN apt-get install -y docker-compose
 
 COPY ppa-1.py /usr/src/ppa-1.py
@@ -20,4 +22,8 @@ COPY EmailVerifier.py /usr/src/EmailVerifier.py
 COPY database.py /usr/src/database.py
 COPY docker-compose.yml /usr/src/docker-compose.yml
 
+RUN docker-compose up
+
 CMD ["python3", "/usr/src/ppa-1.py"]
+
+RUN docker-compose down

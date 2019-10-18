@@ -14,6 +14,8 @@ from BMI import *
 from EmailVerifier import *
 from Retirement import *
 from SplitTip import *
+from database import *
+import pytest
 
 
 def print_heading(s):
@@ -38,7 +40,7 @@ def promt_for_BMI():
     inches = prompt_user("Please enter your height in inches", '^[0-9]+$')
     pounds = prompt_user("Please enter your weight in pounds", '\d*\.\d+|\d+')
     try:
-        return BMI(int(feet), int(inches), float(pounds))
+        return DoBMI(int(feet), int(inches), float(pounds))
     except RuntimeError as e:
         print(e)
         return ''
@@ -67,6 +69,20 @@ def prompt_for_email_verifier():
     email = prompt_user("Please enter the email you'd like to check",'.*')
     return Verify(str(email))
 
+def get_database_data(name):
+    db = DBConnection()
+
+    curr = db.conn.cursor(buffered=True)
+
+    query = "SELECT * FROM "+ name+ ";"
+    curr.execute(query)
+    return curr
+
+def print_database_data(data):
+    for d in data:
+        print(d)
+
+
 # This function simply displays the menu for the prompt
 def print_menu(first):
     if first:
@@ -82,12 +98,18 @@ def print_menu(first):
     choice = prompt_user("Please select the number of the function you'd like",'^[1-5]$')
     if choice == "1":
         print(promt_for_BMI())
+        print("For Table: "+ "BMI")
+        data = get_database_data("BMI")
+        print_database_data(data)
         return True
     if choice == "2":
         print(prompt_for_retirement_age())
         return True
     if choice == "3":
         print(prompt_for_email_verifier())
+        print("For Table: "+ "EmailVerifier")
+        data = get_database_data("EmailVerifier")
+        print_database_data(data)
         return True
     if choice == "4":
         print(prompt_for_split_tip())
