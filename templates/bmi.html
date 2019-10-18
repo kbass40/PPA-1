@@ -1,0 +1,37 @@
+{% block content %}
+    <h1>POST BMI Requests</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.footField.label }}<br>
+            {{ form.footField(size=32) }}
+        </p>
+        <p>
+            {{ form.inchesField.label }}<br>
+            {{ form.inchesField(size=32) }}
+        </p>
+        <p>
+            {{ form.poundsField.label }}<br>
+            {{ form.poundsField(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+
+{% endblock %}
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>

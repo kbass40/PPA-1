@@ -49,8 +49,8 @@ def EmailVerifier(email):
 
 def postEmailVerification(email):
     try:
-        Verify(email)
-        return 201
+        ret = Verify(email)
+        return 201, ret
     except:
         abort(404, "Parameters were not correct")
 
