@@ -22,4 +22,4 @@ COPY BMI_test.py /usr/src/BMI_test.py
 COPY Retirement_test.py /usr/src/Retirement_test.py
 COPY SplitTip_test.py /usr/src/SplitTip_test.py
 
-RUN python3 -m pytest
+# RUN python3 -m pytest
