@@ -12,18 +12,14 @@ RUN pip3 install mysql-connector-python
 
 RUN pip3 install pytest_mock
 
-RUN apt-get install -y docker-compose
-
 COPY ppa-1.py /usr/src/ppa-1.py
 COPY BMI.py /usr/src/BMI.py
 COPY Retirement.py /usr/src/Retirement.py
 COPY SplitTip.py /usr/src/SplitTip.py
 COPY EmailVerifier.py /usr/src/EmailVerifier.py
-COPY database.py /usr/src/database.py
-COPY docker-compose.yml /usr/src/docker-compose.yml
+COPY EmailVerifier_test.py /usr/src/EmailVerifier_test.py
+COPY BMI_test.py /usr/src/BMI_test.py
+COPY Retirement_test.py /usr/src/Retirement_test.py
+COPY SplitTip_test.py /usr/src/SplitTip_test.py
 
-RUN docker-compose up
-
-CMD ["python3", "/usr/src/ppa-1.py"]
-
-RUN docker-compose down
+RUN python3 -m pytest
