@@ -2,6 +2,8 @@ from flask import Flask, render_template, redirect, url_for, flash
 import connexion
 from forms import *
 import database
+import BMI
+import EmailVerifier
 from json2html import *
 
 options = {"swagger_ui": True}
@@ -33,7 +35,7 @@ def home():
 def bmi():
     form = BMIForm()
     if form.validate_on_submit():
-        ret = database.insert_into_BMI(form.footField.data, form.inchesField.data, form.poundsField.data)
+        ret = BMI.BMI(form.footField.data, form.inchesField.data, form.poundsField.data)
         flash(ret)
     return render_template('bmi.html', title='Calculate BMI', form=form)
 
@@ -41,7 +43,19 @@ def bmi():
 def get_bmi():
     table = database.readBMI()
     return json2html.convert(json=table)
+    
+@app.route('/post-email', methods=['GET', 'POST'])
+def email():
+    form = EmailForm()
+    if form.validate_on_submit():
+        ret = EmailVerifier.Verify(form.email.data)
+        flash(ret)
+    return render_template('email.html', title='Verify Email', form=form)
 
+@app.route('/get-email', methods=['GET'])
+def get_email():
+    table = database.readEmailVerifier()
+    return json2html.convert(json=table)
 
 # If we're running in stand alone mode, run the application
 if __name__ == '__main__':
