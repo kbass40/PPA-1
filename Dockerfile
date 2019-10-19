@@ -23,5 +23,6 @@ COPY EmailVerifier_test.py /usr/src/EmailVerifier_test.py
 COPY BMI_test.py /usr/src/BMI_test.py
 COPY Retirement_test.py /usr/src/Retirement_test.py
 COPY SplitTip_test.py /usr/src/SplitTip_test.py
+COPY docker-compose.yml /usr/local/bin/docker-compose.yml
 
 # RUN python3 -m pytest
