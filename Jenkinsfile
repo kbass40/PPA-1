@@ -24,7 +24,7 @@ pipeline {
                 dockerfile true
             }
             steps {
-                sh 'service docker start --user="jenkins"'
+                sh 'service docker start'
                 sh '/usr/local/bin/docker-compose up'
                 sh 'python3 -m pytest'
                 sh '/usr/local/bin/docker-compose down'
