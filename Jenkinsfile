@@ -16,9 +16,9 @@ pipeline {
                 dockerfile true
             }
             steps {
-                sh '/usr/local/bin/docker-compose up --build'
+                // sh '/usr/local/bin/docker-compose up'
                 sh 'python3 -m pytest'
-                sh 'docker-compose down' 
+                // sh 'docker-compose down' 
             }
         }
     }
