@@ -11,7 +11,7 @@ pipeline {
                 echo 'Inital build'
             }
         }
-        stage('Unit Tests') { 
+        stage('Unit Tests (Phase1)') { 
             agent {
                 dockerfile true
             }
@@ -19,12 +19,12 @@ pipeline {
                 sh 'python3 -m pytest --ignore database_test.py'
             }
         }
-        stage('Database Tests') { 
+        stage('Database Tests (Phase2)') { 
             agent {
                 dockerfile true
             }
             steps {
-                sh 'service docker start --user='jenkins'' 
+                sh 'service docker start --user='jenkins''
                 sh '/usr/local/bin/docker-compose up'
                 sh 'python3 -m pytest'
                 sh '/usr/local/bin/docker-compose down'
