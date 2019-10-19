@@ -10,8 +10,6 @@ RUN apt-get install -y docker-compose
 
 RUN apt-get install -y curl
 
-RUN apt-get install -y systemd
-
 RUN pip3 install -U pytest
 
 RUN pip3 install mysql-connector-python
