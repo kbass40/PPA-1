@@ -11,14 +11,12 @@ pipeline {
                 echo 'Inital build'
             }
         }
-        stage('Test') { 
+        stage('Unit Tests') { 
             agent {
                 dockerfile true
             }
             steps {
-                // sh '/usr/local/bin/docker-compose up'
                 sh 'python3 -m pytest --ignore database_test.py'
-                // sh 'docker-compose down' 
             }
         }
     }
