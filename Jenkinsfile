@@ -24,7 +24,7 @@ pipeline {
                 dockerfile true
             }
             steps {
-                sh 'docker-compose up'
+                sh 'systemctl start docker && docker-compose up'
                 sh 'python3 -m pytest'
                 sh 'docker-compose down'
             }
