@@ -16,7 +16,9 @@ pipeline {
                 dockerfile true
             }
             steps {
-                sh 'python3 -m pytest' 
+                sh 'docker-compose up'
+                sh 'python3 -m pytest'
+                sh 'docker-compose down' 
             }
         }
     }
