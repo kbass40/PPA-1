@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 // sh '/usr/local/bin/docker-compose up'
-                sh 'python3 -m pytest'
+                sh 'python3 -m pytest --ignore database_test.py'
                 // sh 'docker-compose down' 
             }
         }
