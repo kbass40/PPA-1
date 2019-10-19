@@ -19,5 +19,15 @@ pipeline {
                 sh 'python3 -m pytest --ignore database_test.py'
             }
         }
+        stage('Database Tests') { 
+            agent {
+                dockerfile true
+            }
+            steps {
+                sh 'docker-compose up'
+                sh 'python3 -m pytest'
+                sh 'docker-compose down'
+            }
+        }
     }
 }
