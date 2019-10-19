@@ -8,7 +8,7 @@ RUN apt-get install -y python3-pip
 
 RUN apt-get install -y docker-compose
 
-RUN apt-get install curl
+RUN apt-get install -y curl
 
 RUN pip3 install -U pytest
 
