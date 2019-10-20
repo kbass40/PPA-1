@@ -19,11 +19,16 @@ pipeline {
                 sh 'python3 -m pytest --ignore database_test.py'
             }
         }
-        stage('Database Tests') { 
-            steps {
+        stage('Setup database') {
+            steps{
                 sh 'sudo service docker start'
                 echo 'docker1'
-                sh 'docker-compose up'
+                sh 'docker-compose up --build'
+            }
+        }
+        stage('Database Tests') { 
+            steps {
+                
                 echo 'docker2'
                 sh 'python3 -m pytest --ignore database_test.py'
                 echo 'docker3'
