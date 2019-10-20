@@ -1,5 +1,5 @@
 pipeline {
-    // agent none
+    agent none
     stages {
         stage('Build') {
             agent {
@@ -20,10 +20,9 @@ pipeline {
             }
         }
         stage('Database Tests') { 
-            agent none
-           // agent {
-           //     dockerfile true
-           // }
+           agent {
+               label 'database'
+           }
             steps {
                 sh 'sudo service docker start'
                 sh 'docker-compose up'
