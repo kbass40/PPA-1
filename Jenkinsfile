@@ -20,6 +20,7 @@ pipeline {
             }
         }
         stage('Database Tests') { 
+            agent none
            // agent {
            //     dockerfile true
            // }
