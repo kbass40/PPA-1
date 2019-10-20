@@ -22,9 +22,14 @@ pipeline {
         stage('Database Tests') { 
             steps {
                 sh 'sudo service docker start'
+                echo 'docker1'
                 sh 'docker-compose up'
+                echo 'docker2'
                 sh 'python3 -m pytest'
+                echo 'docker3'
                 sh 'docker-compose down'
+                echo 'docker4'
+                sh 'sudo service docker stop'
             }
         }
     }
