@@ -21,6 +21,6 @@ COPY EmailVerifier_test.py /usr/src/EmailVerifier_test.py
 COPY BMI_test.py /usr/src/BMI_test.py
 COPY Retirement_test.py /usr/src/Retirement_test.py
 COPY SplitTip_test.py /usr/src/SplitTip_test.py
-COPY docker-compose.yml /usr/local/bin/docker-compose.yml
-
-# RUN python3 -m pytest
+COPY database.py /usr/src/database.py
+COPY database_test.py /usr/src/database_test.py
+COPY docker-compose.yml /usr/src/docker-compose.yml

@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Database Tests') { 
             steps {
-                sh 'python3 -m pytest'
+                sh 'python3 -m pytest database_test.py'
             }
         }
     }

@@ -85,16 +85,3 @@ def test_classify_BMI4():
     result = classify_BMI(30)
     assert result == "Obese"
 
-# faking the database
-def test_bmi_databse1():
-    fakedb = TestDBConnection()
-    fakedb.insert_into_BMI("fake date", "5", "5", "150", "Overweight")
-    insert = fakedb.get_bmi()
-    assert insert[0] == ("fake date", "5", "5", "150", "Overweight")
-
-def test_bmi_database2():
-    fakedb = TestDBConnection()
-    fakedb.insert_into_BMI("fake date", "5", "5", "150", "Overweight")
-    fakedb.insert_into_BMI(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "6", "5", "180", "Normal weight")
-    insert = fakedb.get_bmi()
-    assert len(insert) == 2

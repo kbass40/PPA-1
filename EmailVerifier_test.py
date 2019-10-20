@@ -1,7 +1,5 @@
 from EmailVerifier import *
-from database import TestDBConnection
 import pytest
-import datetime
 
 def test_EmailVerifier_email_raises_exception_on_non_str_args():
     with pytest.raises(TypeError):
@@ -48,16 +46,3 @@ def test_EmailVerifier_works_with_short_email():
 def test_EmailVerifier_works_with_long_email():
     assert 'Email is valid' == EmailVerifier('PopeyesBestChickenSandwichInTown!123456789@enterprise.comp'), 'Test Failed: Email should be valid'
 
-# faking the database
-def test_email_database1():
-    fakedb = TestDBConnection()
-    fakedb.insert_into_Email_Verifier("fake date", "test@test.com", "TRUE")
-    insert = fakedb.get_email()
-    assert insert[0] == ("fake date", "test@test.com", "TRUE")
-
-def test_email_database2():
-    fakedb = TestDBConnection()
-    fakedb.insert_into_Email_Verifier("fake date", "test@test.com", "TRUE")
-    fakedb.insert_into_Email_Verifier(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'), "test@test.com", "TRUE")
-    insert = fakedb.get_email()
-    assert len(insert) == 2
