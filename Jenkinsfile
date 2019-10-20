@@ -16,11 +16,13 @@ pipeline {
                 dockerfile true
             }
             steps {
+                echo 'Run unit tests'
                 sh 'python3 -m pytest --ignore database_test.py'
             }
         }
         stage('Database Tests') { 
             steps {
+                echo 'Run database tests'
                 sh 'python3 -m pytest database_test.py'
             }
         }
