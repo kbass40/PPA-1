@@ -6,17 +6,9 @@ RUN apt-get install -y python3
 
 RUN apt-get install -y python3-pip
 
-RUN apt-get install -y docker-compose
-
-RUN apt-get install -y curl
-
 RUN pip3 install -U pytest
 
-RUN pip3 install mysql-connector-python
-
 RUN pip3 install pytest_mock
-
-RUN curl -L https://github.com/docker/compose/releases/download/1.21.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose
 
 COPY ppa-1.py /usr/src/ppa-1.py
 COPY BMI.py /usr/src/BMI.py
