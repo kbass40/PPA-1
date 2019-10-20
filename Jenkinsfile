@@ -20,14 +20,14 @@ pipeline {
             }
         }
         stage('Database Tests') { 
-            agent {
-                dockerfile true
-            }
+           // agent {
+           //     dockerfile true
+           // }
             steps {
-                sh 'service docker start'
-                sh '/usr/local/bin/docker-compose up'
+                sh 'sudo service docker start'
+                sh 'docker-compose up'
                 sh 'python3 -m pytest'
-                sh '/usr/local/bin/docker-compose down'
+                sh 'docker-compose down'
             }
         }
     }
