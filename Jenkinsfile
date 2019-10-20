@@ -25,7 +25,7 @@ pipeline {
                 echo 'docker1'
                 sh 'docker-compose up'
                 echo 'docker2'
-                sh 'python3 -m pytest'
+                sh 'python3 -m pytest --ignore database_test.py'
                 echo 'docker3'
                 sh 'docker-compose down'
                 echo 'docker4'
