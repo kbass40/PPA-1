@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Database Tests') { 
             steps {
-                sh 'python3 -m pytest --ignore database_test.py'
+                sh 'python3 -m pytest'
             }
         }
     }
