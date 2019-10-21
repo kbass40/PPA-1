@@ -84,3 +84,6 @@ def postBMI(feet, inches, pounds, debug=False):
         
 def insert_into_database(db, feet, inches, pounds, output):
     db.insert_into_BMI(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),feet, inches, pounds, output)
+
+def get_timestamp():
+    return datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')

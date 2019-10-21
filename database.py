@@ -70,26 +70,29 @@ class DBConnection(DatabaseConnection):
         print("Executed successfully")
 
 
-def readBMI():
-        db = DBConnection()
+def readBMI(db=DBConnection()):
+    if isinstance(db, TestDBConnection):
+        curr = db.get_bmi()
+        
+    else:
         conn =  db.get_connection()
 
         curr = conn.cursor()
         curr.execute("SELECT * FROM BMI")
 
-        json = {}
+    json = {}
 
-        for i,tup in enumerate(curr):
-            call = {
-                "Timestamp" : str(tup[0]),
-                "Feet" : str(tup[1]),
-                "Inches" : str(tup[2]),
-                "Pounds" : str(tup[3]),
-                "Classification" : str(tup[4])
-            }
-            json[i+1] = call
+    for i,tup in enumerate(curr):
+        call = {
+            "Timestamp" : str(tup[0]),
+            "Feet" : str(tup[1]),
+            "Inches" : str(tup[2]),
+            "Pounds" : str(tup[3]),
+            "Classification" : str(tup[4])
+        }
+        json[i+1] = call
 
-        return json
+    return json
 
 def readEmailVerifier():
     db = DBConnection()
@@ -109,7 +112,7 @@ def readEmailVerifier():
         json[i+1] = call
 
     return json 
-    
+
 class TestDBConnection(DatabaseConnection):
 
     email = None
@@ -121,6 +124,7 @@ class TestDBConnection(DatabaseConnection):
     def get_connection(self,user='user',passwd='password',new=False):
         self.email = []
         self.bmi = []
+
     def insert_into_Email_Verifier(self, timestamp, email, output):
         self.email.append((timestamp, email, output))
 
