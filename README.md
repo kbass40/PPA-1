@@ -1,4 +1,4 @@
-# PPA-1
+# PPA-1 && PPA-2
  Intro to Unit Testing & T/BDD using Python3 and pytest
 
  For the full project breakdown, see the wiki. https://github.com/kbass40/PPA-1/wiki
@@ -22,12 +22,36 @@ sudo apt-get install python3
 
 sudo apt-get install python3-pip
 
-pip install -U pytest
+sudo apt-get docker-compose
 
-How to run on Linux: python3 ppa-1.py 
+pip3 install -U pytest
 
-or for test suite: python3 -m pytest 
+pip3 install -U pytest
+
+pip3 install mysql-connector-python
+
+pip3 install pytest_mock
+
+pip3 install flask
+
+pip3 install connexion
+
+pip3 install flask_wtf
+
+pip3 install json2html
+
+How to run on Linux: 
+ sudo service docker start
+ docker-compose up
+ python3 ppa-1.py 
+
+or for test suite: 
+ sudo service docker start
+ docker-compose up
+ python3 -m pytest 
 
 
 # How to run the Flask Application
-
+ sudo service docker start
+ docker-compose up
+ python3 flask_app.py
