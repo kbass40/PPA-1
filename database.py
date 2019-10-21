@@ -99,12 +99,17 @@ def readBMI(db=None):
 
     return json
 
-def readEmailVerifier():
-    db = DBConnection()
-    conn =  db.get_connection()
+def readEmailVerifier(db=None):
+    if db == None:
+        db = DBConnection()
+    
+    if isinstance(db, TestDBConnection):
+        curr = db.get_email()
+    else:
+        conn =  db.get_connection()
 
-    curr = conn.cursor()
-    curr.execute("SELECT * FROM EmailVerifier")
+        curr = conn.cursor()
+        curr.execute("SELECT * FROM EmailVerifier")
 
     json = {}
 

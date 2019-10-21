@@ -57,12 +57,41 @@ def test_invalid_POST_EMAIL_VERIFICATION():
     ret = postEmailVerification("Test@test,com",True)
     assert ret == (201, 'Email is not valid')
 
-# def test_mock_get_bmi(mocker):
-#     mocker.patch.object(flask_app, 'get_bmi')
-#     flask_app.get_bmi()
-#     flask_app.get_bmi.assert_called_once()
+def test_GET_EMAIL():
+    mockedDB = TestDBConnection()
+    time_stamp = get_timestamp()
+    confirmation = {1: {'Timestamp': time_stamp, "Input Email" : 'danil_kyle@rocketmail.com', "Valid" : 'TRUE',}}
+    
+    mockedDB.insert_into_Email_Verifier(time_stamp, 'danil_kyle@rocketmail.com', 'TRUE')
+    json = readEmailVerifier(mockedDB)
 
-# def test_mock_get_email(mocker):
-#     mocker.patch.object(flask_app, 'get_email')
-#     flask_app.get_email()
-#     flask_app.get_email.assert_called_once()
+    assert json == confirmation
+
+def test_GET_EMAIL_gets_all_entries():
+    mockedDB = TestDBConnection()
+    time_stamp1 = get_timestamp()
+    time_stamp2 = get_timestamp()
+    time_stamp3 = get_timestamp()
+    email1 = 'this'
+    email2 = 'is'
+    email3 = 'atest@ufl.edu'
+    confirmation = {1: {'Timestamp': time_stamp1, "Input Email" : email1, "Valid" : 'FALSE',}}
+    confirmation[2] = {'Timestamp': time_stamp2, "Input Email" : email2, "Valid" : 'FALSE',}
+    confirmation[3] = {'Timestamp': time_stamp3, "Input Email" : email3, "Valid" : 'TRUE',}
+    
+    mockedDB.insert_into_Email_Verifier(time_stamp1, email1, 'FALSE')
+    mockedDB.insert_into_Email_Verifier(time_stamp2, email2, 'FALSE')
+    mockedDB.insert_into_Email_Verifier(time_stamp3, email3, 'TRUE')
+    json = readEmailVerifier(mockedDB)
+
+    assert json == confirmation
+
+def test_mock_get_bmi(mocker):
+    mocker.patch.object(flask_app, 'get_bmi')
+    flask_app.get_bmi()
+    flask_app.get_bmi.assert_called_once()
+
+def test_mock_get_email(mocker):
+    mocker.patch.object(flask_app, 'get_email')
+    flask_app.get_email()
+    flask_app.get_email.assert_called_once()
