@@ -29,12 +29,12 @@ pipeline {
                 sh 'python3 -m pytest database_test.py'
             }
         }
-        stage('Flask app Tests') {
+        stage('API Tests') {
             agent {
                 dockerfile true
             }
             steps {
-                echo 'Run flask app tests'
+                echo 'Run api tests'
                 sh 'python3 -m pytest api_test.py'
             }
         }
