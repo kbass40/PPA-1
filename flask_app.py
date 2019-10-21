@@ -35,7 +35,7 @@ def home():
 def bmi():
     form = BMIForm()
     if form.validate_on_submit():
-        ret = BMI.BMI(form.footField.data, form.inchesField.data, form.poundsField.data)
+        ret = BMI.DoBMI(form.footField.data, form.inchesField.data, form.poundsField.data)
         flash(ret)
     return render_template('bmi.html', title='Calculate BMI', form=form)
 
