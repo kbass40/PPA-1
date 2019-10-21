@@ -6,6 +6,8 @@ import werkzeug
 from database import readBMI, readEmailVerifier, TestDBConnection
 from BMI import postBMI, get_timestamp
 from EmailVerifier import postEmailVerification
+from pytest_mock import mocker
+import flask_app
 
 def test_fail_POST_BMI():
     # Should fail due to invalid inches
@@ -54,3 +56,13 @@ def test_POST_EMAIL_VERIFICATION():
 def test_invalid_POST_EMAIL_VERIFICATION():
     ret = postEmailVerification("Test@test,com",True)
     assert ret == (201, 'Email is not valid')
+
+# def test_mock_get_bmi(mocker):
+#     mocker.patch.object(flask_app, 'get_bmi')
+#     flask_app.get_bmi()
+#     flask_app.get_bmi.assert_called_once()
+
+# def test_mock_get_email(mocker):
+#     mocker.patch.object(flask_app, 'get_email')
+#     flask_app.get_email()
+#     flask_app.get_email.assert_called_once()

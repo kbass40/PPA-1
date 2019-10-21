@@ -14,7 +14,10 @@ printable characters: !$%*+-=?^_{|}~ but not: "(),:;<>@[\]` (this function provi
 to use regular expressions).
 '''
 
-def Verify(email, db):
+def Verify(email, db=None):
+    if db == None:
+        db = DBConnection()
+
     ret = EmailVerifier(email)
 
     out = ""
