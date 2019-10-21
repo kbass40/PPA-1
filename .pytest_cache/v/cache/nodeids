@@ -82,6 +82,15 @@
   "database_test.py::test_email_database2",
   "database_test.py::test_bmi_databse1",
   "database_test.py::test_bmi_database2",
-  "flask_app_test.py::test_mock_get_bmi",
-  "flask_app_test.py::test_mock_get_email"
+  "test_api.py::test_fail_POST_BMI",
+  "test_api.py::test_POST_BMI",
+  "test_api.py::test_GET_BMI",
+  "test_api.py::test_GET_BMI_gets_all_entries",
+  "test_api.py::test_fail_POST_EMAIL_VERIFICATION",
+  "test_api.py::test_POST_EMAIL_VERIFICATION",
+  "test_api.py::test_invalid_POST_EMAIL_VERIFICATION",
+  "test_api.py::test_GET_EMAIL",
+  "test_api.py::test_GET_EMAIL_gets_all_entries",
+  "test_api.py::test_mock_get_bmi",
+  "test_api.py::test_mock_get_email"
 ]
