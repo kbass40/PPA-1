@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 echo 'Run unit tests'
-                sh 'python3 -m pytest --ignore database_test.py --ignore api_test.py'
+                sh 'python3 -m pytest --ignore database_test.py --ignore test_api.py'
             }
         }
         stage('Database Tests') { 
@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 echo 'Run api tests'
-                sh 'python3 -m pytest api-test.py'
+                sh 'python3 -m pytest test_api.py'
             }
         }
     }
