@@ -14,6 +14,9 @@ class DBConnection(DatabaseConnection):
         self.get_connection(user,passwd)
         self.__initialize__()
 
+    def __del__(self):
+        self.conn.close()
+
     def get_connection(self,user='user',passwd='password',new=False):
         """Creates return new Singleton database connection"""
         if new or not self.conn:

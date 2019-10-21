@@ -74,9 +74,14 @@ def get_database_data(name):
 
     curr = db.conn.cursor(buffered=True)
 
+    data = []
     query = "SELECT * FROM "+ name+ ";"
     curr.execute(query)
-    return curr
+
+    for d in curr:
+        data.append(d)
+        
+    return data
 
 def print_database_data(data):
     for d in data:
