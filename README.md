@@ -66,3 +66,10 @@ pip3 install json2html
  python3 flask_app.py
  
  then in a browser navigate to localhost:5000
+
+ # API Routing
+ - /get-bmi : Returns a json object of all the bmi queries stored in the database.
+ - /post-bmi : Uses in-query parameters to try an execute a bmi request. If successful will return 201, if failure it will return a 404. 
+
+ - /get-email : Returns a json object of all the email verification queries stored in the database.
+ - /post-email : Uses in-query parameters to try an execute a email verification request. If successful will return 201 and the result, if failure it will return a 404. 
