@@ -7,11 +7,11 @@
 1. First, make sure to install Python3 on your Windows machine via the Windows download
     - Python for Windows: https://www.python.org/downloads/windows/
 2. Next make sure to install the dependent modules (pytest and coverage.py)
-    - Simply type the following command 'pip install -r requirements.txt'. This will have pip install all the dependent modules for out project.
+    - Simply type the following command 'pip install -r requirements.txt'. This will have pip install all the dependent modules for our project.
 3. For convience, a batch files are included to run the project via the terminal
     - Navigate to the project directory and run the following batch files:
         - up : to start the database in a docker container
-    - Then you can run either / or the terminal application or the flask app:
+    - Then you can run either / both the terminal application or the flask app:
         - run : to start the terminal application
         - flask : to start the flask application
     - NOTE: The database needs to be active to ensure these run properly.
