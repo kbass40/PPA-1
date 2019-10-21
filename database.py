@@ -73,7 +73,9 @@ class DBConnection(DatabaseConnection):
         print("Executed successfully")
 
 
-def readBMI(db=DBConnection()):
+def readBMI(db=None):
+    if db == None:
+        db = DBConnection()
     if isinstance(db, TestDBConnection):
         curr = db.get_bmi()
         
