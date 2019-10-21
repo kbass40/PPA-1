@@ -13,13 +13,12 @@ of 30 or greater (need to convert height and weight to metric values - see formu
 METRIC_CONVERSION_FACTOR_WEIGHT = .45
 METRIC_CONVERSION_FACTOR_HEIGHT = .025
 
-def DoBMI(feet, inches, pounds):
+def DoBMI(feet, inches, pounds, db=DBConnection()):
     ret = BMI(feet, inches, pounds)
 
     bmi = calculate_BMI(feet, inches, pounds)
 
     # Log data into the database
-    db = DBConnection()
     insert_into_database(db, feet, inches, pounds, bmi)
 
     return ret
@@ -71,9 +70,14 @@ def classify_BMI(calculated_BMI):
     else:
         return "Error calculating BMI"
 
-def postBMI(feet, inches, pounds):
+def postBMI(feet, inches, pounds, debug=False):
+    if debug:
+        db = TestDBConnection()
+    else:
+        db = DBConnection()
+
     try:
-        BMI(feet,inches,pounds)
+        DoBMI(feet,inches,pounds,db)
         return 201
     except:
         abort(404, "Parameters were not correct")
