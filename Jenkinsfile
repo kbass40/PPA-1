@@ -21,6 +21,9 @@ pipeline {
             }
         }
         stage('Database Tests') { 
+            agent {
+                dockerfile true
+            }
             steps {
                 echo 'Run database tests'
                 sh 'python3 -m pytest database_test.py'

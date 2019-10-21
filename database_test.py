@@ -37,6 +37,6 @@ def test_bmi_database2():
     insert = fakedb.get_bmi()
     assert len(insert) == 2
 
-
-data = db('user','password')
-data.print_db()
+def print_db():
+    data = db('user','password')
+    data.print_db()
