@@ -8,10 +8,10 @@
     - Python for Windows: https://www.python.org/downloads/windows/
 2. Next make sure to install the dependent modules (pytest and coverage.py)
     - Simply type the following command 'pip install -r requirements.txt'. This will have pip install all the dependent modules for our project.
-3. For convience, a batch files are included to run the project via the terminal
+3. For convience, several batch files are included to run the project via the terminal
     - Navigate to the project directory and run the following batch files:
         - up : to start the database in a docker container
-    - Then you can run either / both the terminal application or the flask app:
+    - Then you can run either / both the terminal application or / and the flask app:
         - run : to start the terminal application
         - flask : to start the flask application
     - NOTE: The database needs to be active to ensure these run properly.
@@ -43,6 +43,7 @@ pip3 install flask_wtf
 
 pip3 install json2html
 
+
 # How to run on Linux: 
  
  sudo service docker start
@@ -50,6 +51,7 @@ pip3 install json2html
  docker-compose up
  
  python3 ppa-1.py 
+
 
 # or for test suite: 
  
@@ -69,6 +71,7 @@ pip3 install json2html
  python3 flask_app.py
  
  then in a browser navigate to localhost:5000
+ 
 
  # API Routing
  - /get-bmi : Returns a json object of all the bmi queries stored in the database.
