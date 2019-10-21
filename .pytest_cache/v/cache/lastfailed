@@ -1,5 +1,0 @@
-{
-  "database_test.py::test_mock_database_init": true,
-  "flask_app_test.py::test_mock_post_bmi": true,
-  "flask_app_test.py::test_mock_whole_function": true
-}
