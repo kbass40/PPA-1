@@ -17,7 +17,7 @@ pipeline {
             }
             steps {
                 echo 'Run unit tests'
-                sh 'python3 -m pytest --ignore database_test.py'
+                sh 'python3 -m pytest --ignore database_test.py --ignore flask_app_test.py'
             }
         }
         stage('Database Tests') { 
@@ -27,6 +27,15 @@ pipeline {
             steps {
                 echo 'Run database tests'
                 sh 'python3 -m pytest database_test.py'
+            }
+        }
+        stage('Flask app Tests') {
+            agent {
+                dockerfile true
+            }
+            steps {
+                echo 'Run flask app tests'
+                sh 'python3 -m pytest flask_app_test.py'
             }
         }
     }

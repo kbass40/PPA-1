@@ -14,7 +14,7 @@ printable characters: !$%*+-=?^_{|}~ but not: "(),:;<>@[\]` (this function provi
 to use regular expressions).
 '''
 
-def Verify(email):
+def Verify(email, db):
     ret = EmailVerifier(email)
 
     out = ""
@@ -25,7 +25,6 @@ def Verify(email):
         out = "FALSE"
 
     # Log function use in database
-    db = DBConnection()
     insert_into_database(db, email, out)
 
     return ret
@@ -47,9 +46,13 @@ def EmailVerifier(email):
 
     return ret
 
-def postEmailVerification(email):
+def postEmailVerification(email, debug=False):
+    if debug:
+        db = TestDBConnection()
+    else:
+        db = DBConnection()
     try:
-        ret = Verify(email)
+        ret = Verify(email, db)
         return 201, ret
     except:
         abort(404, "Parameters were not correct")
