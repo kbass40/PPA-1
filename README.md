@@ -64,3 +64,5 @@ pip3 install json2html
  docker-compose up
  
  python3 flask_app.py
+ 
+ then in a browser navigate to localhost:5000
