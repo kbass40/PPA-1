@@ -40,18 +40,27 @@ pip3 install flask_wtf
 
 pip3 install json2html
 
-How to run on Linux: 
+# How to run on Linux: 
+ 
  sudo service docker start
+ 
  docker-compose up
+ 
  python3 ppa-1.py 
 
-or for test suite: 
+# or for test suite: 
+ 
  sudo service docker start
+ 
  docker-compose up
+ 
  python3 -m pytest 
 
 
 # How to run the Flask Application
+ 
  sudo service docker start
+ 
  docker-compose up
+ 
  python3 flask_app.py
