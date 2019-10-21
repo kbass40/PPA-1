@@ -84,3 +84,4 @@ def test_classify_BMI3():
 def test_classify_BMI4():
     result = classify_BMI(30)
     assert result == "Obese"
+

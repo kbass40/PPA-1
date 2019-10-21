@@ -45,3 +45,4 @@ def test_EmailVerifier_works_with_short_email():
 
 def test_EmailVerifier_works_with_long_email():
     assert 'Email is valid' == EmailVerifier('PopeyesBestChickenSandwichInTown!123456789@enterprise.comp'), 'Test Failed: Email should be valid'
+

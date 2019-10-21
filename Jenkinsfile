@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
     stages {
         stage('Build') {
             agent {
@@ -11,12 +11,22 @@ pipeline {
                 echo 'Inital build'
             }
         }
-        stage('Test') { 
+        stage('Unit Tests') { 
             agent {
                 dockerfile true
             }
             steps {
-                sh 'python3 -m pytest' 
+                echo 'Run unit tests'
+                sh 'python3 -m pytest --ignore database_test.py'
+            }
+        }
+        stage('Database Tests') { 
+            agent {
+                dockerfile true
+            }
+            steps {
+                echo 'Run database tests'
+                sh 'python3 -m pytest database_test.py'
             }
         }
     }

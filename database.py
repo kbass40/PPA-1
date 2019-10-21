@@ -2,8 +2,12 @@ import os
 import logging
 import mysql.connector
 
+class DatabaseConnection():
+    def get_connection(self, user, password, new): pass
+    def insert_into_Email_Verifier(self, timestamp, email, output): pass
+    def insert_into_BMI(self, timestamp, feet, inches, pounds, output): pass
 
-class DBConnection():
+class DBConnection(DatabaseConnection):
 
     def __init__(self,user='user',passwd='password'):
         self.conn = None
@@ -105,3 +109,34 @@ def readEmailVerifier():
         json[i+1] = call
 
     return json 
+class TestDBConnection(DatabaseConnection):
+
+    email = None
+    bmi = None
+
+    def __init__(self):
+        self.get_connection()
+
+    def get_connection(self,user='user',passwd='password',new=False):
+        self.email = []
+        self.bmi = []
+    def insert_into_Email_Verifier(self, timestamp, email, output):
+        self.email.append((timestamp, email, output))
+
+    def insert_into_BMI(self, timestamp, feet, inches, pounds, output): 
+        self.bmi.append((timestamp, feet, inches, pounds, output))
+
+    def print_db(self, name):
+        table = None
+        if name == "EmailVerifier":
+            table = self.email
+        else:
+            table = self.bmi
+        print(f"Table: {name}")
+        print('\n'.join(map(str, table))) 
+
+    def get_email(self):
+        return self.email
+
+    def get_bmi(self):
+        return self.bmi
