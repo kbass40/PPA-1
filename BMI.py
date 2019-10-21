@@ -13,7 +13,7 @@ of 30 or greater (need to convert height and weight to metric values - see formu
 METRIC_CONVERSION_FACTOR_WEIGHT = .45
 METRIC_CONVERSION_FACTOR_HEIGHT = .025
 
-def DoBMI(feet, inches, pounds, db=DBConnection()):
+def DoBMI(feet, inches, pounds, db):
     ret = BMI(feet, inches, pounds)
 
     bmi = calculate_BMI(feet, inches, pounds)
