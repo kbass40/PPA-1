@@ -109,6 +109,7 @@ def readEmailVerifier():
         json[i+1] = call
 
     return json 
+    
 class TestDBConnection(DatabaseConnection):
 
     email = None
