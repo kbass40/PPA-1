@@ -35,7 +35,7 @@ pipeline {
             }
             steps {
                 echo 'Run api tests'
-                sh 'python3 -m pytest api_test.py'
+                sh 'python3 -m pytest api-test.py'
             }
         }
     }
